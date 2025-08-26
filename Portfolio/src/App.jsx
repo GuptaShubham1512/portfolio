@@ -1,36 +1,89 @@
 import React, { useState } from "react";
 
-const MessageBox = ({ onClose,toSubmit }) => {
+const ContactForm = () => {
   const [message, setMessage] = useState("");
 
-  const handleSubmit = () => {
-    toSubmit(message);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (message.trim() === "") {
+      alert("Please enter a message!");
+      return;
+    }
+
+    const phoneNumber = "917479774187"; // Replace with your WhatsApp number
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+      message
+    )}`;
+
+    window.open(url, "_blank"); // Opens WhatsApp in new tab/app
+  };
+
+  return (
+    <div className="p-6 max-w-md mx-auto border rounded-xl shadow-lg bg-white">
+      <h2 className="text-xl font-bold mb-4">Contact Me on WhatsApp</h2>
+      <form onSubmit={handleSubmit}>
+        <textarea
+          className="w-full border rounded-lg p-2 mb-4"
+          rows="4"
+          placeholder="Type your message..."
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+        <button
+          type="submit"
+          className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition"
+        >
+          Send to WhatsApp
+        </button>
+      </form>
+    </div>
+  );
+};
+
+
+
+const MessageBox = ({ onClose, toSubmit }) => {
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault(); // prevent page reload
+    if (!email || !message) {
+      alert("Please fill both email and message");
+      return;
+    }
+
+    // Send email & message together
+    toSubmit({ email, message });
+    
+    // Reset fields
+    setEmail("");
     setMessage("");
   };
 
   return (
     <div className="mt-4 p-4 border rounded-lg bg-white shadow-md w-full sm:w-96">
-      <input
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        placeholder="Email"
-        className="border p-2 rounded w-full mb-2"
-      />
-      <input
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        placeholder="Message"
-        className="border p-2 rounded w-full mb-2"
-      />
-      <p className="text-gray-700">{message}</p>
-     
-      
-      <button
-        onClick={handleSubmit}
-        className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 transition padding-50"
-      >
+      <form onSubmit={handleSubmit}>
+        <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
+          className="border p-2 rounded w-full mb-2"
+        />
+        <textarea
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder="Message"
+          className="border p-2 rounded w-full mb-2"
+        />
+        <button
+          type="submit"
+          className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 transition"
+        >
           Submit
-      </button>
+        </button>
+      </form>
       <button
         onClick={onClose}
         className="mt-2 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700 transition"
@@ -40,6 +93,7 @@ const MessageBox = ({ onClose,toSubmit }) => {
     </div>
   );
 };
+
 
 const App = () => {
   const [showMessage, setShowMessage] = useState(false);
@@ -69,7 +123,7 @@ const App = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center p-8 space-y-8">
+    <div className="min-h-screen bg-blue-200 flex flex-col items-center p-8 space-y-8">
       {/* Profile Section */}
       <div className="flex flex-col items-center sm:flex-row sm:items-center sm:gap-6 w-full max-w-5xl bg-white p-6 rounded-2xl shadow-md">
         <img
@@ -84,16 +138,34 @@ const App = () => {
           <p className="font-medium text-gray-500">
             Engineering Student at LNCT Group of Colleges
           </p>
-
+          
           <button
             onClick={() => setShowMessage(true)}
             className="mt-4 px-6 py-3 bg-sky-500 text-white font-semibold rounded-lg shadow-md hover:bg-sky-700 transition"
           >
-            Hire Me
+            Hire Me 
           </button>
 
-          {showMessage && <MessageBox onClose={() => setShowMessage(false)} />}
           
+          <MessageBox
+  onClose={() => setShowMessage(false)}
+  toSubmit={(data) => {
+    // Replace with your number, include country code without '+'
+    const phoneNumber = "917479774187";
+    // Encode the message to make it URL-safe
+    const encodedMessage = encodeURIComponent(
+      `Email: ${data.email}\nMessage: ${data.message}`
+    );
+    // WhatsApp link
+    const url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    
+    // Open WhatsApp in a new tab
+    window.open(url, "_blank");
+  }}
+/>
+
+    
+
         </div>
       </div>
 
