@@ -1,17 +1,36 @@
 import React, { useState } from "react";
 
-const MessageBox = ({ onClose }) => {
+const MessageBox = ({ onClose,toSubmit }) => {
   const [message, setMessage] = useState("");
+
+  const handleSubmit = () => {
+    toSubmit(message);
+    setMessage("");
+  };
 
   return (
     <div className="mt-4 p-4 border rounded-lg bg-white shadow-md w-full sm:w-96">
       <input
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        placeholder="Type a message"
+        placeholder="Email"
+        className="border p-2 rounded w-full mb-2"
+      />
+      <input
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        placeholder="Message"
         className="border p-2 rounded w-full mb-2"
       />
       <p className="text-gray-700">{message}</p>
+     
+      
+      <button
+        onClick={handleSubmit}
+        className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 transition padding-50"
+      >
+          Submit
+      </button>
       <button
         onClick={onClose}
         className="mt-2 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700 transition"
@@ -74,6 +93,7 @@ const App = () => {
           </button>
 
           {showMessage && <MessageBox onClose={() => setShowMessage(false)} />}
+          
         </div>
       </div>
 
