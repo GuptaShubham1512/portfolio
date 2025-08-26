@@ -1,15 +1,10 @@
 import React, { useState } from "react";
 
-const MessageBox = () => {
+const MessageBox = ({ onClose }) => {
   const [message, setMessage] = useState("");
-  return (
-    <div className="mt-4 p-4 border rounded-lg bg-white shadow-md">
-      import React, { useState } from "react";
 
-const MessageBox = () => {
-  const [message, setMessage] = useState("");
   return (
-    <div className="mt-4 p-4 border rounded-lg bg-white shadow-md">
+    <div className="mt-4 p-4 border rounded-lg bg-white shadow-md w-full sm:w-96">
       <input
         value={message}
         onChange={(e) => setMessage(e.target.value)}
@@ -17,6 +12,12 @@ const MessageBox = () => {
         className="border p-2 rounded w-full mb-2"
       />
       <p className="text-gray-700">{message}</p>
+      <button
+        onClick={onClose}
+        className="mt-2 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700 transition"
+      >
+        Close
+      </button>
     </div>
   );
 };
@@ -24,87 +25,65 @@ const MessageBox = () => {
 const App = () => {
   const [showMessage, setShowMessage] = useState(false);
 
+  const projects = [
+    {
+      title: "MystryMessage",
+      description:
+        "This project allows users to send messages to each other and provides an AI-powered suggestion feature to help draft messages. Users can save their conversations and work on them.",
+      imgSrc:
+        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAmVBMVEX...",
+    },
+    {
+      title: "LearningDisco-LMS",
+      description:
+        "I have built a project that provides a basic frontend for a Book Bank system. Further enhancements are in progress, including integrating a chatbot and adding a 3D interactive version.",
+      imgSrc:
+        "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMSEhUTExMSFRMX...",
+    },
+    {
+      title: "Project 3 Example",
+      description:
+        "Another project example showcasing frontend and backend integration with React and Python.",
+      imgSrc:
+        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAC7CAMAAACjH4DlAAABHVBMVEX...",
+    },
+  ];
+
   return (
-    <div className="flex flex-col items-center justify-center p-8 sm:flex-row sm:items-center sm:gap-6 sm:py-4">
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center p-8 space-y-8">
       {/* Profile Section */}
-      <div className="space-y-2 text-center sm:text-left">
+      <div className="flex flex-col items-center sm:flex-row sm:items-center sm:gap-6 w-full max-w-5xl bg-white p-6 rounded-2xl shadow-md">
         <img
           src="https://media.licdn.com/media/AAYQAQSOAAgAAQAAAAAAAB-zrMZEDXI2T62PSuT6kpB6qg.png"
-          alt="example"
+          alt="Profile"
           className="w-28 h-28 object-cover rounded-2xl shadow-lg"
         />
-        <div className="space-y-1">
+        <div className="space-y-1 text-center sm:text-left ml-0 sm:ml-6">
           <p className="text-lg font-semibold text-black">
             Shubham Kumar Gupta
           </p>
           <p className="font-medium text-gray-500">
             Engineering Student at LNCT Group of Colleges
           </p>
-        </div>
 
-        <div className="mt-4 flex justify-center">
           <button
-            onClick={() => setShowMessage(!showMessage)}
-            className="px-6 py-3 bg-sky-500 text-white font-semibold rounded-lg shadow-md hover:bg-sky-700 transition"
+            onClick={() => setShowMessage(true)}
+            className="mt-4 px-6 py-3 bg-sky-500 text-white font-semibold rounded-lg shadow-md hover:bg-sky-700 transition"
           >
             Hire Me
           </button>
-        </div>
 
-        {/* Render MessageBox conditionally */}
-        {showMessage && <MessageBox />}
+          {showMessage && <MessageBox onClose={() => setShowMessage(false)} />}
+        </div>
       </div>
 
       {/* Projects Section */}
-      <div className="aligned-center min-h-screen bg-gray-100 mt-8 sm:mt-0">
-        {/* Projects code remains the same */}
-      </div>
-    </div>
-  );
-};
+      <section className="w-full max-w-5xl">
+        <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
+          
+        </h2>
 
-export default App;
-
-    </div>
-  );
-};
-
-
-const App = () => {
-  const [showMessage, setShowMessage] = useState(false);
-  return (
-    <div className="flex flex-col items-center justify-center p-8 sm:flex-row sm:items-center sm:gap-6 sm:py-4">
-      
-
-      {/* Name and imformation... */}
-      <div className="space-y-2 text-center sm:text-left">
-        <img
-        src="https://media.licdn.com/media/AAYQAQSOAAgAAQAAAAAAAB-zrMZEDXI2T62PSuT6kpB6qg.png"
-        alt="example"
-        className="w-28 h-28 object-cover rounded-2xl shadow-lg"
-      />
-        <div className="space-y-1">
-          <p className="text-lg font-semibold text-black">
-            Shubham Kumar Gupta
-          </p>
-          <p className="font-medium text-gray-500">
-            Engineering Student at LNCT Group of Colleges
-          </p>
-        </div>
-
-        
-        <div className="mt-4 flex justify-center">
-            <button onClick={() => setShowMessage(true)} className="px-6 py-3 bg-sky-500 text-white font-semibold rounded-lg shadow-md hover:bg-sky-700 transition">
-             Hire Me
-            </button>
-        </div>
-
-        <div className="aligned-center"> 
-          <div className="min-h-screen bg-gray-100">
-      
-
-      {/* ================= Projects Section ================= */}
-      <section className="p-8">
+        <section className="p-8">
         <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
           My Projects
         </h2>
@@ -146,11 +125,7 @@ const App = () => {
           {/* Add more project cards here */}
         </div>
       </section>
-    </div>
-           
-          
-        </div>
-      </div>
+      </section>
     </div>
   );
 };
