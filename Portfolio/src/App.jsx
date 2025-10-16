@@ -1,6 +1,5 @@
+
 import React, { useState } from "react";
-
-
 
 // MessageBox Component
 const MessageBox = ({ onClose, toSubmit }) => {
@@ -14,28 +13,25 @@ const MessageBox = ({ onClose, toSubmit }) => {
       return;
     }
     toSubmit({ email, message });
+    onClose(); // Close after submitting
   };
 
   return (
-
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-  <div className="bg-white p-6 rounded-lg shadow-lg w-96 relative flex flex-col items-center">
-    <img
-      src="/myphoto.jpg"
-      alt="Shubham Gupta"
-      className="w-40 h-40 rounded-full object-cover shadow-lg border-4 border-blue-500 mb-4"
-    />
-  
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-96 relative">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-96 relative flex flex-col items-center">
         <button
           className="absolute top-2 right-2 text-gray-500 hover:text-gray-800"
           onClick={onClose}
         >
           ✖
         </button>
+        <img
+          src="/myphoto.jpg"
+          alt="Shubham Gupta"
+          className="w-40 h-40 rounded-full object-cover shadow-lg border-4 border-blue-500 mb-4"
+        />
         <h2 className="text-xl font-bold mb-4">Send Message</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="w-full">
           <input
             type="email"
             placeholder="Email"
@@ -57,8 +53,6 @@ const MessageBox = ({ onClose, toSubmit }) => {
           </button>
         </form>
       </div>
-    </div>
-    </div>
     </div>
   );
 };
@@ -179,12 +173,12 @@ const App = () => {
   </button>
 
   <a
-    href="/resume.pdf"
+    href="/Shubham_Gupta_Resume.pdf"
     target="_blank"
     rel="noopener noreferrer"
     className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
   >
-    View Resume
+     Resume
   </a>
 </div>
 
