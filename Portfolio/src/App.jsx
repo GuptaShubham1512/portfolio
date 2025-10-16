@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 
-<div className="flex flex-col items-center mt-8">
-  {/* Profile Photo */}
-  <img
-    src="/myphoto.jpg"
-    alt="Shubham Gupta"
-    className="w-40 h-40 rounded-full object-cover shadow-lg border-4 border-blue-500"
-  />
-  </div>
+
 
 // MessageBox Component
 const MessageBox = ({ onClose, toSubmit }) => {
@@ -24,6 +17,15 @@ const MessageBox = ({ onClose, toSubmit }) => {
   };
 
   return (
+
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+  <div className="bg-white p-6 rounded-lg shadow-lg w-96 relative flex flex-col items-center">
+    <img
+      src="/myphoto.jpg"
+      alt="Shubham Gupta"
+      className="w-40 h-40 rounded-full object-cover shadow-lg border-4 border-blue-500 mb-4"
+    />
+  
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-white p-6 rounded-lg shadow-lg w-96 relative">
         <button
@@ -55,6 +57,8 @@ const MessageBox = ({ onClose, toSubmit }) => {
           </button>
         </form>
       </div>
+    </div>
+    </div>
     </div>
   );
 };
@@ -166,20 +170,24 @@ const App = () => {
               Passionate and dedicated software developer with strong expertise in C++, Data Structures & Algorithms (DSA), and the MERN stack. Proficient in building full-stack web applications with React, Node.js, and MongoDB, with a solid understanding of database design and management. Adept at problem-solving, writing clean and efficient code, and delivering innovative software solutions. Enthusiastic about learning new technologies and contributing to impactful projects.
             </p>
           </p>
-          <button
-            onClick={() => setShowMessage(true)}
-            className="mt-4 px-6 py-3 bg-sky-500 text-white font-semibold rounded-lg shadow-md hover:bg-sky-700 transition"
-          >
-            Hire Me
-          </button>
-          <a
-  href="/Shubham_Gupta_Resume.pdf"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="mt-4 px-8 py-3 bg-sky-500 text-white font-semibold rounded-lg shadow-md hover:bg-sky-700 transition"
->
-  Resume
-</a>
+          <div className="flex gap-x-8 mt-6">
+  <button
+    onClick={() => setShowMessage(true)}
+    className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition"
+  >
+    Hire Me
+  </button>
+
+  <a
+    href="/resume.pdf"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+  >
+    View Resume
+  </a>
+</div>
+
 
             
             
