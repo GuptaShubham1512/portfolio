@@ -1,5 +1,14 @@
 import React, { useState } from "react";
 
+<div className="flex flex-col items-center mt-8">
+  {/* Profile Photo */}
+  <img
+    src="/myphoto.jpg"
+    alt="Shubham Gupta"
+    className="w-40 h-40 rounded-full object-cover shadow-lg border-4 border-blue-500"
+  />
+  </div>
+
 // MessageBox Component
 const MessageBox = ({ onClose, toSubmit }) => {
   const [email, setEmail] = useState("");
