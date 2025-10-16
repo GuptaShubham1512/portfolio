@@ -167,9 +167,9 @@ const App = () => {
   href="/Shubham_Gupta_Resume.pdf"
   target="_blank"
   rel="noopener noreferrer"
-  className="mt-4 px-6 py-3 bg-sky-500 text-white font-semibold rounded-lg shadow-md hover:bg-sky-700 transition"
+  className="mt-4 px-8 py-3 bg-sky-500 text-white font-semibold rounded-lg shadow-md hover:bg-sky-700 transition"
 >
-  View Resume
+  Resume
 </a>
 
             
