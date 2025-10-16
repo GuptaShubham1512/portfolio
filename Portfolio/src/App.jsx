@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 
-// MessageBox Component
+// MessageBox Componen
 const MessageBox = ({ onClose, toSubmit }) => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
