@@ -163,6 +163,17 @@ const App = () => {
           >
             Hire Me
           </button>
+          <a
+  href="/Shubham_Gupta_Resume.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-block bg-blue-600 text-white px-6 py-3 rounded-xl shadow-md hover:bg-blue-700 transition-all duration-300"
+>
+  View Resume
+</a>
+
+            
+            
 
           {showMessage && (
             <MessageBox
